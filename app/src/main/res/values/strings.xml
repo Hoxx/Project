@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Project</string>
+    <string name="index_name">首页</string>
+    <string name="drawer_menu_image">图片</string>
+    <string name="drawer_close">关闭</string>
+    <string name="drawer_open">打开</string>
+</resources>
