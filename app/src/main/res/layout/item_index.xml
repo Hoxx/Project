@@ -17,8 +17,8 @@
 
         <ImageView
             android:id="@+id/iv_index_icon"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
+            android:layout_width="140dp"
+            android:layout_height="140dp"
             android:layout_margin="10dp"
             android:scaleType="centerCrop"
             android:src="@mipmap/timg" />

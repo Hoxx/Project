@@ -42,7 +42,7 @@ public class ImageModel extends BaseModel implements IImageModel {
 
 
     public void loadData() {
-        httpManager.request(iAPI.getVideoList("30", "3"), observer);
+        httpManager.request(iAPI.getVideoList("100", "3"), observer);
     }
 
     @Override
@@ -52,7 +52,7 @@ public class ImageModel extends BaseModel implements IImageModel {
 
     @Override
     public void onLoadData(int page) {
-        httpManager.request(iAPI.getVideoList("30", "" + page), observer);
+        httpManager.request(iAPI.getVideoList("100", "" + page), observer);
     }
 
     @Override
