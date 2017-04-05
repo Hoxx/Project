@@ -11,5 +11,13 @@
             android:id="@+id/menu_image"
             android:icon="@mipmap/ic_launcher"
             android:title="" />
+        <item
+            android:id="@+id/menu_joke"
+            android:icon="@mipmap/ic_launcher"
+            android:title="" />
+        <item
+            android:id="@+id/menu_news"
+            android:icon="@mipmap/ic_launcher"
+            android:title="" />
     </group>
 </menu>

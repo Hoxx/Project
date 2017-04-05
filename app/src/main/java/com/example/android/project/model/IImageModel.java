@@ -6,7 +6,7 @@ import com.example.android.project.base.IBaseModel;
  * Created by Android on 2017/4/1.
  */
 
-public interface IMainModel extends IBaseModel {
+public interface IImageModel extends IBaseModel {
 
     void onRefreshData();
 

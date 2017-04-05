@@ -7,7 +7,7 @@ import com.example.android.project.bean.Root;
  * Created by Android on 2017/4/1.
  */
 
-public interface IMainCallback extends IBaseDataInterface {
+public interface IImageCallback extends IBaseDataInterface {
 
     void onSuccess(Root root);
 

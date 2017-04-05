@@ -13,6 +13,8 @@ import com.example.android.project.base.BaseActivity;
 import com.example.android.project.base.BaseFragment;
 import com.example.android.project.view.main.FragmentImage;
 import com.example.android.project.view.main.FragmentIndex;
+import com.example.android.project.view.main.FragmentJoke;
+import com.example.android.project.view.main.FragmentNews;
 
 import java.util.ArrayList;
 
@@ -27,6 +29,8 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     private ArrayList<BaseFragment> fragmentArrayList;
     private FragmentIndex fragmentIndex = new FragmentIndex();
     private FragmentImage fragmentImage = new FragmentImage();
+    private FragmentJoke fragmentJoke = new FragmentJoke();
+    private FragmentNews fragmentNews = new FragmentNews();
 
     private String[] indexNames;
 
@@ -69,6 +73,8 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         fragmentArrayList = new ArrayList<>();
         fragmentArrayList.add(fragmentIndex);
         fragmentArrayList.add(fragmentImage);
+        fragmentArrayList.add(fragmentNews);
+        fragmentArrayList.add(fragmentJoke);
     }
 
     @Override
@@ -86,6 +92,12 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
                 break;
             case R.id.menu_image:
                 setFragment(1);
+                break;
+            case R.id.menu_joke:
+                setFragment(2);
+                break;
+            case R.id.menu_news:
+                setFragment(3);
                 break;
         }
     }

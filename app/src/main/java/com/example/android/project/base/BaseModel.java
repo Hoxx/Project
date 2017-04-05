@@ -1,5 +1,6 @@
 package com.example.android.project.base;
 
+import com.example.android.project.api.IAPI;
 import com.example.android.project.net.HttpManager;
 import com.example.android.project.net.RetrofitUtil;
 
@@ -12,11 +13,12 @@ import retrofit2.Retrofit;
 public abstract class BaseModel {
 
     public HttpManager httpManager;
-
     public Retrofit retrofit;
+    public IAPI iAPI;
 
     public BaseModel() {
         httpManager = new HttpManager();
         retrofit = RetrofitUtil.getInstance().getRetrofit();
+        iAPI = retrofit.create(IAPI.class);
     }
 }

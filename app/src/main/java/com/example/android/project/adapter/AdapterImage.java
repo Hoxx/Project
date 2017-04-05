@@ -19,12 +19,12 @@ import java.util.List;
  * Created by Android on 2017/4/1.
  */
 
-public class AdapterMain extends RecyclerView.Adapter {
+public class AdapterImage extends RecyclerView.Adapter {
 
     private List<Results> list;
     private Context context;
 
-    public AdapterMain(List<Results> list, Context context) {
+    public AdapterImage(List<Results> list, Context context) {
         this.list = list;
         this.context = context;
     }

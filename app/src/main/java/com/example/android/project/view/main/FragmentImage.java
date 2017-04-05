@@ -1,13 +1,26 @@
 package com.example.android.project.view.main;
 
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
+
 import com.example.android.project.R;
+import com.example.android.project.adapter.AdapterImage;
 import com.example.android.project.base.BaseFragment;
+import com.example.android.project.bean.Root;
+import com.example.android.project.presenter.ImagePresenter;
+import com.example.android.project.view.IImageView;
 
 /**
  * Created by Android on 2017/4/5.
  */
 
-public class FragmentImage extends BaseFragment {
+public class FragmentImage extends BaseFragment implements IImageView {
+
+    private RecyclerView recycler_image;
+    private AdapterImage adapterImage;
+
+    private ImagePresenter presenter;
+
     @Override
     public int setLayout() {
         return R.layout.fragment_image;
@@ -15,11 +28,29 @@ public class FragmentImage extends BaseFragment {
 
     @Override
     public void initView() {
-
+        recycler_image = (RecyclerView) rootView.findViewById(R.id.recycler_image);
+        recycler_image.setLayoutManager(new GridLayoutManager(getActivity(), 2));
     }
 
     @Override
     public void initDate() {
+        presenter = new ImagePresenter(this);
+        presenter.getData();
+    }
 
+    @Override
+    public void showLoading() {
+        showLoadingDialog();
+    }
+
+    @Override
+    public void hideLoading() {
+        hideLoadingDialog();
+    }
+
+    @Override
+    public void setData(Root root) {
+        adapterImage = new AdapterImage(root.getResults(), getActivity());
+        recycler_image.setAdapter(adapterImage);
     }
 }

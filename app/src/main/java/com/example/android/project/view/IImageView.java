@@ -7,7 +7,7 @@ import com.example.android.project.bean.Root;
  * Created by Android on 2017/4/1.
  */
 
-public interface IMainActivityView extends IBaseView {
+public interface IImageView extends IBaseView {
 
     void setData(Root root);
 

@@ -1,5 +1,6 @@
 package com.example.android.project.base;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -13,6 +14,8 @@ import android.view.ViewGroup;
 public abstract class BaseFragment extends Fragment {
 
     public View rootView;
+
+    private ProgressDialog progressDialog;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -33,6 +36,18 @@ public abstract class BaseFragment extends Fragment {
 
     public void initialize() {
 
+    }
+
+    public void showLoadingDialog() {
+        if (progressDialog == null)
+            progressDialog = ProgressDialog.show(getActivity(), "", "加载中...");
+        else
+            progressDialog.show();
+    }
+
+    public void hideLoadingDialog() {
+        if (progressDialog != null)
+            progressDialog.cancel();
     }
 
     public abstract int setLayout();
