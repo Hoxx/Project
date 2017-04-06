@@ -1,13 +1,16 @@
 package com.example.android.project.view.main;
 
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 
 import com.example.android.project.R;
 import com.example.android.project.adapter.AdapterImage;
 import com.example.android.project.base.BaseFragment;
 import com.example.android.project.presenter.ImagePresenter;
 import com.example.android.project.utils.PhotoViewDialog;
+import com.example.android.project.utils.RecyclerViewUtils;
 import com.example.android.project.view.IImageView;
 
 import java.util.ArrayList;
@@ -17,16 +20,20 @@ import java.util.List;
  * Created by Android on 2017/4/5.
  */
 
-public class FragmentImage extends BaseFragment implements IImageView, AdapterImage.onItemClickListener {
+public class FragmentImage extends BaseFragment implements IImageView, AdapterImage.onItemClickListener, RecyclerViewUtils.OnScrollBottom, SwipeRefreshLayout.OnRefreshListener {
 
     private RecyclerView recycler_image;
     private AdapterImage adapterImage;
+
+    private SwipeRefreshLayout refreshLayout;
 
     private List<String> dataList;
 
     private ImagePresenter presenter;
 
     private PhotoViewDialog dialog;
+
+    private int page = 1;
 
     @Override
     public int setLayout() {
@@ -35,8 +42,11 @@ public class FragmentImage extends BaseFragment implements IImageView, AdapterIm
 
     @Override
     public void initView() {
+        refreshLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.refreshlayout_image);
+        refreshLayout.setOnRefreshListener(this);
         recycler_image = (RecyclerView) rootView.findViewById(R.id.recycler_image);
         recycler_image.setLayoutManager(new GridLayoutManager(getActivity(), 2));
+        RecyclerViewUtils.setOnScrollBottom(recycler_image, this);
     }
 
     @Override
@@ -58,6 +68,8 @@ public class FragmentImage extends BaseFragment implements IImageView, AdapterIm
     @Override
     public void hideLoading() {
         hideLoadingDialog();
+        if (refreshLayout.isRefreshing())
+            refreshLayout.setRefreshing(false);
     }
 
     @Override
@@ -76,5 +88,17 @@ public class FragmentImage extends BaseFragment implements IImageView, AdapterIm
     public void onItemClick(int position) {
         dialog.setImage(dataList.get(position));
         dialog.show();
+    }
+
+    @Override
+    public void onBottom() {
+        page++;
+        presenter.LoadData(page);
+    }
+
+    @Override
+    public void onRefresh() {
+        dataList.clear();
+        presenter.refreshData();
     }
 }

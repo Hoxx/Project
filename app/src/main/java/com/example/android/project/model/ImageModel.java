@@ -51,13 +51,7 @@ public class ImageModel extends BaseModel implements IImageModel {
     private Function<ImageRoot, List<String>> function = new Function<ImageRoot, List<String>>() {
         @Override
         public List<String> apply(ImageRoot imageRoot) throws Exception {
-            Log.e("TAG", "结果getShowapi_res_code*:" + imageRoot.getShowapi_res_code());
-            Log.e("TAG", "getShowapi_res_error*:" + imageRoot.getShowapi_res_error());
-            List<String> list = imageRoot.getShowapi_res_body().getData();
-            for (String s : list) {
-                Log.e("TAG", "结果*:" + s);
-            }
-            return list;
+            return imageRoot.getShowapi_res_body().getData();
         }
     };
 

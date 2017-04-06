@@ -47,12 +47,12 @@ public class ImagePresenter extends BasePresenter {
 
     @Override
     public void refreshData() {
-
+        indexModel.onRefreshData();
     }
 
     @Override
     public void LoadData(int page) {
-
+        indexModel.onLoadData(page);
     }
 
 }
