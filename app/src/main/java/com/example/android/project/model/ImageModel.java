@@ -1,12 +1,18 @@
 package com.example.android.project.model;
 
+import android.util.Log;
+
 import com.example.android.project.base.BaseModel;
 import com.example.android.project.base.IBaseDataInterface;
-import com.example.android.project.bean.Root;
+import com.example.android.project.bean.ImageRoot;
 import com.example.android.project.datainterface.IImageCallback;
+import com.example.android.project.net.NetConstant;
+
+import java.util.List;
 
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Function;
 
 /**
  * Created by Android on 2017/4/1.
@@ -16,16 +22,19 @@ public class ImageModel extends BaseModel implements IImageModel {
 
     private IImageCallback iImageCallback;
 
-    private Observer<Root> observer = new Observer<Root>() {
+    private Observer<List<String>> observer = new Observer<List<String>>() {
         @Override
         public void onSubscribe(Disposable d) {
 
         }
 
         @Override
-        public void onNext(Root root) {
+        public void onNext(List<String> list) {
+            for (String s : list) {
+                Log.e("TAG", "结果:" + s);
+            }
             if (iImageCallback != null)
-                iImageCallback.onSuccess(root);
+                iImageCallback.onSuccess(list);
         }
 
         @Override
@@ -40,9 +49,23 @@ public class ImageModel extends BaseModel implements IImageModel {
         }
     };
 
+    private Function<ImageRoot, List<String>> function = new Function<ImageRoot, List<String>>() {
+        @Override
+        public List<String> apply(ImageRoot imageRoot) throws Exception {
+            Log.e("TAG", "结果getShowapi_res_code*:" + imageRoot.getShowapi_res_code());
+            Log.e("TAG", "getShowapi_res_error*:" + imageRoot.getShowapi_res_error());
+            List<String> list = imageRoot.getShowapi_res_body().getData();
+            for (String s : list) {
+                Log.e("TAG", "结果*:" + s);
+            }
+            return list;
+        }
+    };
+
 
     public void loadData() {
-        httpManager.request(iAPI.getVideoList("100", "3"), observer);
+//        request(iAPI.getImageList("1", NetConstant.APP_ID, NetConstant.APP_KEY), function, observer);
+        request(iAPI.getImageList("1"), function, observer);
     }
 
     @Override
@@ -52,7 +75,7 @@ public class ImageModel extends BaseModel implements IImageModel {
 
     @Override
     public void onLoadData(int page) {
-        httpManager.request(iAPI.getVideoList("100", "" + page), observer);
+        request(iAPI.getImageList("" + page, NetConstant.APP_ID, NetConstant.APP_KEY), function, observer);
     }
 
     @Override

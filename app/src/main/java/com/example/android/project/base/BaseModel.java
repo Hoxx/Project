@@ -1,9 +1,13 @@
 package com.example.android.project.base;
 
 import com.example.android.project.api.IAPI;
-import com.example.android.project.net.HttpManager;
 import com.example.android.project.net.RetrofitUtil;
 
+import io.reactivex.Observable;
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.functions.Function;
+import io.reactivex.schedulers.Schedulers;
 import retrofit2.Retrofit;
 
 /**
@@ -12,13 +16,19 @@ import retrofit2.Retrofit;
 
 public abstract class BaseModel {
 
-    public HttpManager httpManager;
     public Retrofit retrofit;
     public IAPI iAPI;
 
     public BaseModel() {
-        httpManager = new HttpManager();
         retrofit = RetrofitUtil.getInstance().getRetrofit();
         iAPI = retrofit.create(IAPI.class);
+    }
+
+    public <T, R> void request(Observable<T> observable, Function<? super T, R> f, Observer<R> observer) {
+        observable.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).map(f).subscribe(observer);
+    }
+
+    public <T> void request(Observable<T> observable, Observer<? super T> observer) {
+        observable.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(observer);
     }
 }

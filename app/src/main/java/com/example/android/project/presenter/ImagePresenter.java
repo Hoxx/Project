@@ -4,11 +4,12 @@ import android.util.Log;
 
 import com.example.android.project.base.BasePresenter;
 import com.example.android.project.base.IBaseView;
-import com.example.android.project.bean.Root;
 import com.example.android.project.datainterface.IImageCallback;
 import com.example.android.project.model.IImageModel;
 import com.example.android.project.model.ImageModel;
 import com.example.android.project.view.IImageView;
+
+import java.util.List;
 
 /**
  * Created by Android on 2017/4/1.
@@ -30,9 +31,9 @@ public class ImagePresenter extends BasePresenter {
         iImageView.showLoading();
         indexModel.getData(new IImageCallback() {
             @Override
-            public void onSuccess(Root root) {
+            public void onSuccess(List<String> list) {
                 Log.e("TAG", "Presenter-结果");
-                iImageView.setData(root);
+                iImageView.setData(list);
                 iImageView.hideLoading();
             }
 

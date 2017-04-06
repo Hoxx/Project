@@ -1,7 +1,8 @@
 package com.example.android.project.datainterface;
 
 import com.example.android.project.base.IBaseDataInterface;
-import com.example.android.project.bean.Root;
+
+import java.util.List;
 
 /**
  * Created by Android on 2017/4/1.
@@ -9,6 +10,6 @@ import com.example.android.project.bean.Root;
 
 public interface IImageCallback extends IBaseDataInterface {
 
-    void onSuccess(Root root);
+    void onSuccess(List<String> list);
 
 }

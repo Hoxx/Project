@@ -1,7 +1,8 @@
 package com.example.android.project.view;
 
 import com.example.android.project.base.IBaseView;
-import com.example.android.project.bean.Root;
+
+import java.util.List;
 
 /**
  * Created by Android on 2017/4/1.
@@ -9,6 +10,6 @@ import com.example.android.project.bean.Root;
 
 public interface IImageView extends IBaseView {
 
-    void setData(Root root);
+    void setData(List<String> list);
 
 }

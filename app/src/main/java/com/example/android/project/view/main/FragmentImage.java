@@ -6,9 +6,10 @@ import android.support.v7.widget.RecyclerView;
 import com.example.android.project.R;
 import com.example.android.project.adapter.AdapterImage;
 import com.example.android.project.base.BaseFragment;
-import com.example.android.project.bean.Root;
 import com.example.android.project.presenter.ImagePresenter;
 import com.example.android.project.view.IImageView;
+
+import java.util.List;
 
 /**
  * Created by Android on 2017/4/5.
@@ -49,8 +50,8 @@ public class FragmentImage extends BaseFragment implements IImageView {
     }
 
     @Override
-    public void setData(Root root) {
-        adapterImage = new AdapterImage(root.getResults(), getActivity());
+    public void setData(List<String> list) {
+        adapterImage = new AdapterImage(list, getActivity());
         recycler_image.setAdapter(adapterImage);
     }
 }
