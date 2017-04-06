@@ -1,12 +1,15 @@
 package com.example.android.project.view.main;
 
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 
 import com.example.android.project.R;
 import com.example.android.project.adapter.AdapterIndex;
 import com.example.android.project.base.BaseFragment;
+import com.example.android.project.view.MainActivity;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -15,7 +18,7 @@ import java.util.HashMap;
  * Created by Android on 2017/4/5.
  */
 
-public class FragmentIndex extends BaseFragment {
+public class FragmentIndex extends BaseFragment implements AdapterIndex.onItemClickListener {
 
     RecyclerView recyclerView_index;
 
@@ -50,5 +53,12 @@ public class FragmentIndex extends BaseFragment {
         }
         adapter = new AdapterIndex(getActivity(), list);
         recyclerView_index.setAdapter(adapter);
+        adapter.setOnItemClickListener(this);
+    }
+
+    @Override
+    public void onItemClick(int position) {
+        ((MainActivity) getActivity()).switchContent(position);
+//        Log.e("TAG", "点击位置:" + position);
     }
 }
