@@ -10,4 +10,8 @@ public interface IBaseModel {
 
      void getData(IBaseDataInterface dataInterface);
 
+     void onRefreshData();
+
+     void onLoadData(int page);
+
 }

@@ -26,6 +26,7 @@ public class ImagePresenter extends BasePresenter {
         indexModel = new ImageModel();
     }
 
+    @Override
     public void getData() {
         Log.e("TAG", "Presenter-getData");
         iImageView.showLoading();
@@ -42,6 +43,16 @@ public class ImagePresenter extends BasePresenter {
                 iImageView.hideLoading();
             }
         });
+    }
+
+    @Override
+    public void refreshData() {
+
+    }
+
+    @Override
+    public void LoadData(int page) {
+
     }
 
 }

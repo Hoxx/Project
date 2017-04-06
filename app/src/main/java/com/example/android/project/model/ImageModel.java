@@ -64,7 +64,6 @@ public class ImageModel extends BaseModel implements IImageModel {
 
 
     public void loadData() {
-//        request(iAPI.getImageList("1", NetConstant.APP_ID, NetConstant.APP_KEY), function, observer);
         request(iAPI.getImageList("1"), function, observer);
     }
 
@@ -75,7 +74,7 @@ public class ImageModel extends BaseModel implements IImageModel {
 
     @Override
     public void onLoadData(int page) {
-        request(iAPI.getImageList("" + page, NetConstant.APP_ID, NetConstant.APP_KEY), function, observer);
+        request(iAPI.getImageList("" + page), function, observer);
     }
 
     @Override

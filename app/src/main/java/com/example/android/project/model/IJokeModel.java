@@ -3,10 +3,9 @@ package com.example.android.project.model;
 import com.example.android.project.base.IBaseModel;
 
 /**
- * Created by Android on 2017/4/1.
+ * Created by Android on 2017/4/6.
  */
 
-public interface IImageModel extends IBaseModel {
-
+public interface IJokeModel extends IBaseModel {
 
 }

@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.android.project.R;
+import com.example.android.project.bean.Joke;
 
 import java.util.List;
 
@@ -17,26 +18,27 @@ import java.util.List;
  * Created by Android on 2017/4/1.
  */
 
-public class AdapterImage extends RecyclerView.Adapter {
+public class AdapterJoke extends RecyclerView.Adapter {
 
-    private List<String> list;
+    private List<Joke> list;
     private Context context;
 
-    public AdapterImage(List<String> list, Context context) {
+    public AdapterJoke(List<Joke> list, Context context) {
         this.list = list;
         this.context = context;
     }
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new ImageHolder(LayoutInflater.from(context).inflate(R.layout.item_image, null));
+        return new JokeHolder(LayoutInflater.from(context).inflate(R.layout.item_joke, null));
     }
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        ImageHolder imageHolder = ((ImageHolder) holder);
-        Glide.with(context).load(list.get(position)).fitCenter().centerCrop().into(imageHolder.imageView);
-        imageHolder.textview.setText("美图");
+        JokeHolder jokeHolder = ((JokeHolder) holder);
+        Joke joke = list.get(position);
+        Glide.with(context).load(joke.getImg()).asGif().centerCrop().fitCenter().into(jokeHolder.iv_joke);
+        jokeHolder.tv_joke.setText(joke.getTitle());
     }
 
     @Override
@@ -44,14 +46,14 @@ public class AdapterImage extends RecyclerView.Adapter {
         return list.size();
     }
 
-    class ImageHolder extends RecyclerView.ViewHolder {
-        private ImageView imageView;
-        private TextView textview;
+    class JokeHolder extends RecyclerView.ViewHolder {
+        private ImageView iv_joke;
+        private TextView tv_joke;
 
-        public ImageHolder(View itemView) {
+        public JokeHolder(View itemView) {
             super(itemView);
-            imageView = (ImageView) itemView.findViewById(R.id.imageView);
-            textview = (TextView) itemView.findViewById(R.id.textview);
+            iv_joke = (ImageView) itemView.findViewById(R.id.iv_joke);
+            tv_joke = (TextView) itemView.findViewById(R.id.tv_joke);
         }
     }
 }

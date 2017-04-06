@@ -17,5 +17,10 @@ public abstract class BasePresenter {
             baseView = null;
     }
 
+    public abstract void getData();
+
+    public abstract void refreshData();
+
+    public abstract void LoadData(int page);
 
 }

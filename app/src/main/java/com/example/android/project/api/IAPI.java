@@ -1,6 +1,7 @@
 package com.example.android.project.api;
 
 import com.example.android.project.bean.ImageRoot;
+import com.example.android.project.bean.JokeRoot;
 
 import io.reactivex.Observable;
 import retrofit2.http.GET;
@@ -13,10 +14,10 @@ import retrofit2.http.Query;
 public interface IAPI {
     //ImageList:http://route.showapi.com/1208-3?showapi_appid=33164&id=2&showapi_sign=ed8aa3ba15074a9abf8f5b0f80b4a692
     @GET("1208-3")
-    Observable<ImageRoot> getImageList(@Query("id") String page, @Query("showapi_appid") String showapi_appid,
-                                       @Query("showapi_sign") String showapi_sign);
+    Observable<ImageRoot> getImageList(@Query("id") String id);
 
-    @GET("1208-3")
-    Observable<ImageRoot> getImageList(@Query("id") String page);
+    //JokeList:http://route.showapi.com/341-3?showapi_appid=33164&page=1&maxResult=10&showapi_sign=ed8aa3ba15074a9abf8f5b0f80b4a692
+    @GET("341-3")
+    Observable<JokeRoot> getJokeList(@Query("page") String page, @Query("maxResult") String maxResult);
 
 }
