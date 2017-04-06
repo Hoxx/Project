@@ -7,20 +7,26 @@ import com.example.android.project.R;
 import com.example.android.project.adapter.AdapterImage;
 import com.example.android.project.base.BaseFragment;
 import com.example.android.project.presenter.ImagePresenter;
+import com.example.android.project.utils.PhotoViewDialog;
 import com.example.android.project.view.IImageView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by Android on 2017/4/5.
  */
 
-public class FragmentImage extends BaseFragment implements IImageView {
+public class FragmentImage extends BaseFragment implements IImageView, AdapterImage.onItemClickListener {
 
     private RecyclerView recycler_image;
     private AdapterImage adapterImage;
 
+    private List<String> dataList;
+
     private ImagePresenter presenter;
+
+    private PhotoViewDialog dialog;
 
     @Override
     public int setLayout() {
@@ -35,6 +41,11 @@ public class FragmentImage extends BaseFragment implements IImageView {
 
     @Override
     public void initDate() {
+        dataList = new ArrayList<>();
+        adapterImage = new AdapterImage(dataList, getActivity());
+        recycler_image.setAdapter(adapterImage);
+        adapterImage.setOnItemClickListener(this);
+        dialog = new PhotoViewDialog(getActivity());
         presenter = new ImagePresenter(this);
         presenter.getData();
     }
@@ -51,13 +62,19 @@ public class FragmentImage extends BaseFragment implements IImageView {
 
     @Override
     public void setData(List<String> list) {
-        adapterImage = new AdapterImage(list, getActivity());
-        recycler_image.setAdapter(adapterImage);
+        dataList.addAll(list);
+        adapterImage.notifyDataSetChanged();
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
         presenter.detachView();
+    }
+
+    @Override
+    public void onItemClick(int position) {
+        dialog.setImage(dataList.get(position));
+        dialog.show();
     }
 }

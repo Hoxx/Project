@@ -19,4 +19,6 @@ public interface Constant {
     String CHANNEL_ID = "channel_id";
     String CHANNEL_TITLE = "channel_title";
 
+    String NEWS_CONTENT = "news_content";
+
 }

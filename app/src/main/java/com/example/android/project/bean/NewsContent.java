@@ -1,14 +1,17 @@
 package com.example.android.project.bean;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by Android on 2017/4/6.
  */
 
-public class NewsContent {
+public class NewsContent implements Serializable {
 
-    private List<Object> allList;
+    private String content;
+
+    private List<String> allList;
 
     private String pubDate;
 
@@ -28,11 +31,21 @@ public class NewsContent {
 
     private String link;
 
-    public void setAllList(List<Object> allList) {
+    private String html;
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public String getContent() {
+        return this.content;
+    }
+
+    public void setAllList(List<String> allList) {
         this.allList = allList;
     }
 
-    public List<Object> getAllList() {
+    public List<String> getAllList() {
         return this.allList;
     }
 
@@ -106,5 +119,13 @@ public class NewsContent {
 
     public String getLink() {
         return this.link;
+    }
+
+    public void setHtml(String html) {
+        this.html = html;
+    }
+
+    public String getHtml() {
+        return this.html;
     }
 }

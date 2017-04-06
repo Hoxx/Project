@@ -40,4 +40,6 @@ public class AdapterNewsChannel extends FragmentPagerAdapter {
     public CharSequence getPageTitle(int position) {
         return channels.get(position).getName();
     }
+
+
 }

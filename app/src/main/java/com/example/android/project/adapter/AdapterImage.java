@@ -37,6 +37,7 @@ public class AdapterImage extends RecyclerView.Adapter {
         ImageHolder imageHolder = ((ImageHolder) holder);
         Glide.with(context).load(list.get(position)).fitCenter().centerCrop().into(imageHolder.imageView);
         imageHolder.textview.setText("美图");
+        imageHolder.imageView.setOnClickListener(new ItemOnClick(position));
     }
 
     @Override
@@ -53,5 +54,30 @@ public class AdapterImage extends RecyclerView.Adapter {
             imageView = (ImageView) itemView.findViewById(R.id.imageView);
             textview = (TextView) itemView.findViewById(R.id.textview);
         }
+    }
+
+    class ItemOnClick implements View.OnClickListener {
+
+        private int position;
+
+        public ItemOnClick(int position) {
+            this.position = position;
+        }
+
+        @Override
+        public void onClick(View v) {
+            if (onItemClickListener != null)
+                onItemClickListener.onItemClick(position);
+        }
+    }
+
+    public interface onItemClickListener {
+        void onItemClick(int position);
+    }
+
+    private onItemClickListener onItemClickListener;
+
+    public void setOnItemClickListener(onItemClickListener onItemClickListener) {
+        this.onItemClickListener = onItemClickListener;
     }
 }

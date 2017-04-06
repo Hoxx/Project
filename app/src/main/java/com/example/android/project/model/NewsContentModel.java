@@ -1,6 +1,7 @@
 package com.example.android.project.model;
 
 import android.text.TextUtils;
+import android.util.Log;
 
 import com.example.android.project.base.BaseModel;
 import com.example.android.project.base.IBaseDataInterface;

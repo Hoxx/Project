@@ -1,10 +1,12 @@
 package com.example.android.project.bean;
 
+import java.io.Serializable;
+
 /**
  * Created by Android on 2017/4/6.
  */
 
-public class NewsContentImage {
+public class NewsContentImage implements Serializable {
 
     private int height;
 

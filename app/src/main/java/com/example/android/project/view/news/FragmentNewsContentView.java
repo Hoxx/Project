@@ -1,5 +1,6 @@
 package com.example.android.project.view.news;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -13,13 +14,14 @@ import com.example.android.project.net.Constant;
 import com.example.android.project.presenter.NewsContentPresenter;
 import com.example.android.project.view.INewsContentView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by Android on 2017/4/6.
  */
 
-public class FragmentNewsContentView extends BaseFragment implements INewsContentView {
+public class FragmentNewsContentView extends BaseFragment implements INewsContentView, AdapterNewsContent.onItemClickListener {
 
     private String ChannelID;
     private String ChannelTitle;
@@ -29,8 +31,11 @@ public class FragmentNewsContentView extends BaseFragment implements INewsConten
 
     private NewsContentPresenter newsContentPresenter;
 
+    private List<NewsContent> dataList;
+
 
     public static FragmentNewsContentView getInstance(String ChannelID, String ChannelTitle) {
+        Log.e("TAG", "创建...");
         FragmentNewsContentView fragmentNewsContent = new FragmentNewsContentView();
         Bundle bundle = new Bundle();
         bundle.putString(Constant.CHANNEL_ID, ChannelID);
@@ -53,6 +58,10 @@ public class FragmentNewsContentView extends BaseFragment implements INewsConten
     @Override
     public void initDate() {
         getData();
+        dataList = new ArrayList<>();
+        adapterNewsContent = new AdapterNewsContent(dataList, getActivity());
+        recycler_news_content.setAdapter(adapterNewsContent);
+        adapterNewsContent.setOnItemClickListener(this);
         newsContentPresenter = new NewsContentPresenter(this);
         newsContentPresenter.getData();
     }
@@ -63,7 +72,6 @@ public class FragmentNewsContentView extends BaseFragment implements INewsConten
             ChannelID = bundle.getString(Constant.CHANNEL_ID);
             ChannelTitle = bundle.getString(Constant.CHANNEL_TITLE);
         }
-
     }
 
     @Override
@@ -78,8 +86,8 @@ public class FragmentNewsContentView extends BaseFragment implements INewsConten
 
     @Override
     public void getData(List<NewsContent> list) {
-        adapterNewsContent = new AdapterNewsContent(list, getActivity());
-        recycler_news_content.setAdapter(adapterNewsContent);
+        dataList.addAll(list);
+        adapterNewsContent.notifyDataSetChanged();
     }
 
     @Override
@@ -96,5 +104,12 @@ public class FragmentNewsContentView extends BaseFragment implements INewsConten
     public void onDestroy() {
         super.onDestroy();
         newsContentPresenter.detachView();
+    }
+
+    @Override
+    public void onItemClick(int position) {
+        Intent intent = new Intent(getActivity(), ActivityNewContent.class);
+        intent.putExtra(Constant.NEWS_CONTENT, dataList.get(position));
+        startActivity(intent);
     }
 }
