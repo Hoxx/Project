@@ -54,4 +54,10 @@ public class FragmentImage extends BaseFragment implements IImageView {
         adapterImage = new AdapterImage(list, getActivity());
         recycler_image.setAdapter(adapterImage);
     }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        presenter.detachView();
+    }
 }

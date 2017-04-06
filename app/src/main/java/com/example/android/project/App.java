@@ -2,7 +2,7 @@ package com.example.android.project;
 
 import android.app.Application;
 
-import com.example.android.project.net.NetConstant;
+import com.example.android.project.net.Constant;
 import com.example.android.project.net.RetrofitUtil;
 
 /**
@@ -19,6 +19,6 @@ public class App extends Application {
 
     private void init() {
 //        RetrofitUtil.getInstance().init("http://gank.io/api/data/%E7%A6%8F%E5%88%A9/");
-        RetrofitUtil.getInstance().init(NetConstant.BASE_URL);
+        RetrofitUtil.getInstance().init(Constant.BASE_URL);
     }
 }

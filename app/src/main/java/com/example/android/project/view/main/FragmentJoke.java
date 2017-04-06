@@ -56,4 +56,10 @@ public class FragmentJoke extends BaseFragment implements IJokeView {
         adapterJoke = new AdapterJoke(list, getActivity());
         recyclerView_joke.setAdapter(adapterJoke);
     }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        jokePresenter.detachView();
+    }
 }

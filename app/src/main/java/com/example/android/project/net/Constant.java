@@ -4,7 +4,7 @@ package com.example.android.project.net;
  * Created by Android on 2017/4/5.
  */
 
-public interface NetConstant {
+public interface Constant {
 
     String BASE_URL = "http://route.showapi.com/";
 
@@ -14,5 +14,9 @@ public interface NetConstant {
     //Joke
     String MAX_RESULT = "15";
 
+
+    //news
+    String CHANNEL_ID = "channel_id";
+    String CHANNEL_TITLE = "channel_title";
 
 }

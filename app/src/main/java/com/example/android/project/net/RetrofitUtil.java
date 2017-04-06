@@ -48,8 +48,8 @@ public class RetrofitUtil {
             public Response intercept(Chain chain) throws IOException {
                 Request request = chain.request();
                 HttpUrl httpUrl = request.url().newBuilder()
-                        .setEncodedQueryParameter("showapi_appid", NetConstant.APP_ID)
-                        .setEncodedQueryParameter("showapi_sign", NetConstant.APP_KEY).build();
+                        .setEncodedQueryParameter("showapi_appid", Constant.APP_ID)
+                        .setEncodedQueryParameter("showapi_sign", Constant.APP_KEY).build();
                 Request newRequest = request.newBuilder().method(request.method(), request.body())
                         .url(httpUrl).build();
                 Response response = chain.proceed(newRequest);

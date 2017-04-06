@@ -5,7 +5,7 @@ import com.example.android.project.base.IBaseDataInterface;
 import com.example.android.project.bean.Joke;
 import com.example.android.project.bean.JokeRoot;
 import com.example.android.project.datainterface.IJokeCallback;
-import com.example.android.project.net.NetConstant;
+import com.example.android.project.net.Constant;
 
 import java.util.List;
 
@@ -65,10 +65,10 @@ public class JokeModel extends BaseModel implements IJokeModel {
 
     @Override
     public void onLoadData(int page) {
-        request(iAPI.getJokeList("" + page, NetConstant.MAX_RESULT), function, observer);
+        request(iAPI.getJokeList("" + page, Constant.MAX_RESULT), function, observer);
     }
 
     private void loadData() {
-        request(iAPI.getJokeList("1", NetConstant.MAX_RESULT), function, observer);
+        request(iAPI.getJokeList("1", Constant.MAX_RESULT), function, observer);
     }
 }

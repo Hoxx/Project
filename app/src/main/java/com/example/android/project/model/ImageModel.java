@@ -6,7 +6,6 @@ import com.example.android.project.base.BaseModel;
 import com.example.android.project.base.IBaseDataInterface;
 import com.example.android.project.bean.ImageRoot;
 import com.example.android.project.datainterface.IImageCallback;
-import com.example.android.project.net.NetConstant;
 
 import java.util.List;
 
