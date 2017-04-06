@@ -1,5 +1,7 @@
 package com.example.android.project.net;
 
+import android.util.Log;
+
 import java.io.IOException;
 
 import okhttp3.HttpUrl;
@@ -53,6 +55,7 @@ public class RetrofitUtil {
                 Request newRequest = request.newBuilder().method(request.method(), request.body())
                         .url(httpUrl).build();
                 Response response = chain.proceed(newRequest);
+                Log.e("TAG", "请求地址：" + response.request().url().toString());
                 return response;
             }
         };

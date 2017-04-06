@@ -2,11 +2,9 @@ package com.example.android.project.view.main;
 
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
-import android.view.View;
 
 import com.example.android.project.R;
-import com.example.android.project.adapter.AdapterNewsContent;
+import com.example.android.project.adapter.AdapterNewsChannel;
 import com.example.android.project.base.BaseFragment;
 import com.example.android.project.bean.NewsChannel;
 import com.example.android.project.presenter.NewChannelPresenter;
@@ -24,7 +22,7 @@ public class FragmentNews extends BaseFragment implements INewsChannelView {
     private TabLayout tabLayout;
     private ViewPager viewPager;
 
-    private AdapterNewsContent adapterNewsContent;
+    private AdapterNewsChannel adapterNewsChannel;
     private NewChannelPresenter newChannelPresenter;
 
     private List<NewsChannel> newsChannels;
@@ -43,8 +41,8 @@ public class FragmentNews extends BaseFragment implements INewsChannelView {
     @Override
     public void initDate() {
         newsChannels = new ArrayList<>();
-        adapterNewsContent = new AdapterNewsContent(getActivity().getSupportFragmentManager(), getActivity(), newsChannels);
-        viewPager.setAdapter(adapterNewsContent);
+        adapterNewsChannel = new AdapterNewsChannel(getActivity().getSupportFragmentManager(), getActivity(), newsChannels);
+        viewPager.setAdapter(adapterNewsChannel);
         tabLayout.setupWithViewPager(viewPager);
         newChannelPresenter = new NewChannelPresenter(this);
         newChannelPresenter.getData();
@@ -64,7 +62,7 @@ public class FragmentNews extends BaseFragment implements INewsChannelView {
     public void setData(List<NewsChannel> list) {
         newsChannels.clear();
         newsChannels.addAll(list);
-        adapterNewsContent.notifyDataSetChanged();
+        adapterNewsChannel.notifyDataSetChanged();
     }
 
     @Override

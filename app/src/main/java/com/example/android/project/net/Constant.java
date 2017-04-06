@@ -12,7 +12,7 @@ public interface Constant {
     String APP_KEY = "ed8aa3ba15074a9abf8f5b0f80b4a692";
 
     //Joke
-    String MAX_RESULT = "15";
+    String MAX_RESULT = "20";
 
 
     //news
