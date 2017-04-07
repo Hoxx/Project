@@ -17,6 +17,8 @@ import com.example.android.project.bean.NewsContent;
 import com.example.android.project.bean.NewsContentImage;
 import com.example.android.project.net.Constant;
 
+import java.io.UnsupportedEncodingException;
+
 public class ActivityNewContent extends BaseActivity {
 
     private TextView tv_news_all_content_title;
