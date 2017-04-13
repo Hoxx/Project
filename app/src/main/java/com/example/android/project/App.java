@@ -18,7 +18,6 @@ public class App extends Application {
     }
 
     private void init() {
-//        RetrofitUtil.getInstance().init("http://gank.io/api/data/%E7%A6%8F%E5%88%A9/");
         RetrofitUtil.getInstance().init(Constant.BASE_URL);
     }
 }
