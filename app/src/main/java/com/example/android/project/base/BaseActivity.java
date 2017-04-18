@@ -2,20 +2,12 @@ package com.example.android.project.base;
 
 import android.Manifest;
 import android.app.ProgressDialog;
-import android.content.DialogInterface;
-import android.content.pm.PackageManager;
-import android.os.Build;
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
-import com.example.android.project.utils.PermissionHelper;
-
-import java.io.File;
+import com.example.android.project.utils.permissionUtil.PermissionHelper;
+import com.example.android.project.utils.permissionUtil.PermissionsHelper;
 
 /**
  * Created by Android on 2017/4/1.
@@ -28,8 +20,10 @@ public abstract class BaseActivity extends AppCompatActivity implements Permissi
 
     //权限
     private String[] FileSystemsPermissions = new String[]{
-            Manifest.permission.WRITE_EXTERNAL_STORAGE};
-    private PermissionHelper permissionHelper;
+            Manifest.permission.WRITE_EXTERNAL_STORAGE,
+            Manifest.permission.CALL_PHONE};
+//    private PermissionHelper permissionHelper;
+    private PermissionsHelper permissionsHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,8 +36,8 @@ public abstract class BaseActivity extends AppCompatActivity implements Permissi
 
 
     private void initialize() {
-        permissionHelper = new PermissionHelper(this);
-        permissionHelper.requestPermission(FileSystemsPermissions, "请允许存储权限", this);
+        permissionsHelper = new PermissionsHelper(this);
+        permissionsHelper.requestPermission(FileSystemsPermissions);
     }
 
     public void showLoadingDialog() {
@@ -61,7 +55,7 @@ public abstract class BaseActivity extends AppCompatActivity implements Permissi
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        permissionHelper.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        permissionsHelper.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 
     @Override

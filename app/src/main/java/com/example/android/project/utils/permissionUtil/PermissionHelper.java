@@ -1,4 +1,4 @@
-package com.example.android.project.utils;
+package com.example.android.project.utils.permissionUtil;
 
 import android.app.Activity;
 import android.content.Context;
