@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Project</string>
+    <string name="app_name">视世</string>
     <string name="index_name">首页</string>
     <string name="drawer_menu_image">图片</string>
     <string name="drawer_close">关闭</string>

@@ -22,7 +22,7 @@ public abstract class BaseActivity extends AppCompatActivity implements Permissi
     private String[] FileSystemsPermissions = new String[]{
             Manifest.permission.WRITE_EXTERNAL_STORAGE,
             Manifest.permission.CALL_PHONE};
-//    private PermissionHelper permissionHelper;
+    //    private PermissionHelper permissionHelper;
     private PermissionsHelper permissionsHelper;
 
     @Override
@@ -56,6 +56,18 @@ public abstract class BaseActivity extends AppCompatActivity implements Permissi
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         permissionsHelper.onRequestPermissionsResult(requestCode, permissions, grantResults);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        permissionsHelper.onResume();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        permissionsHelper.onStop();
     }
 
     @Override
